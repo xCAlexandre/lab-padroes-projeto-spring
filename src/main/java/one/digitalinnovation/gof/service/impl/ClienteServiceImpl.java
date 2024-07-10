@@ -63,7 +63,10 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public void deletar(Long id) {
 		// Deletar Cliente por ID.
-		clienteRepository.deleteById(id);
+		Optional<Cliente> cliente = clienteRepository.findById(id);
+		if(cliente.isPresent()){
+			clienteRepository.deleteById(id);
+		}
 	}
 
 	private void salvarClienteComCep(Cliente cliente) {
